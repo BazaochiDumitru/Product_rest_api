@@ -4,10 +4,9 @@ import com.example.product_rest_api.model.Product;
 import com.example.product_rest_api.service.ProductService;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
+
+import java.util.List;
 
 @RestController
 @RequestMapping("/spring/products")
@@ -23,5 +22,11 @@ public class ProductController {
     @PostMapping
     public ResponseEntity<Product> create(@RequestBody Product product) {
         return new ResponseEntity<Product>(productService.saveProduct(product), HttpStatus.CREATED);
+    }
+
+    // facem metoda de a primi toate inregistrarile
+    @GetMapping
+    public List<Product> get() {
+        return productService.getAll();
     }
 }
