@@ -35,4 +35,10 @@ public class ProductController {
     public ResponseEntity<Product> get(@PathVariable("id") long id) {
         return new ResponseEntity<Product>(productService.get(id), HttpStatus.OK);
     }
+
+    // facem metoda de a actualiza o inregistrare
+    @PutMapping("{id}")
+    public ResponseEntity<Product> update(@PathVariable("id") long id, @RequestBody Product product) {
+        return new ResponseEntity<Product>(productService.update(product, id), HttpStatus.OK);
+    }
 }
