@@ -29,4 +29,10 @@ public class ProductController {
     public List<Product> get() {
         return productService.getAll();
     }
+
+    // facem metoda de a primi o inregsitrare dupa id
+    @GetMapping("{id}")
+    public ResponseEntity<Product> get(@PathVariable("id") long id) {
+        return new ResponseEntity<Product>(productService.get(id), HttpStatus.OK);
+    }
 }
