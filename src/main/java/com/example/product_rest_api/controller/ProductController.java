@@ -41,4 +41,11 @@ public class ProductController {
     public ResponseEntity<Product> update(@PathVariable("id") long id, @RequestBody Product product) {
         return new ResponseEntity<Product>(productService.update(product, id), HttpStatus.OK);
     }
+
+    // facem metoda de a sterge o inregistrare
+    @DeleteMapping("{id}")
+    public ResponseEntity<String> delete(@PathVariable("id") long id) {
+        productService.delete(id);
+        return new ResponseEntity<String>("Product is deleted", HttpStatus.OK);
+    }
 }
