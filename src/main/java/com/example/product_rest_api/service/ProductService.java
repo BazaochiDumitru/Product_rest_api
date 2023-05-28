@@ -13,4 +13,8 @@ public interface ProductService {
     Product update(Product product, long id);
     void delete(long id);
 
+    // filtru
+    List<Product> getAllPrice( int price);
+    List<Product> getProductsByNameLength();
+
 }

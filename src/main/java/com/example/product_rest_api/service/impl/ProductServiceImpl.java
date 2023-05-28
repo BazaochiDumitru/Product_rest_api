@@ -7,6 +7,7 @@ import com.example.product_rest_api.service.ProductService;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.stream.Collectors;
 
 @Service
 public class ProductServiceImpl implements ProductService {
@@ -49,5 +50,16 @@ public class ProductServiceImpl implements ProductService {
     public void delete(long id) {
         productRepository.findById(id).orElseThrow(() -> new ResourceNotFoundException("Product", "id", id));
         productRepository.deleteById(id);
+    }
+
+    // filtru
+    @Override
+    public List<Product> getAllPrice(int price) {
+        return productRepository.findAll().stream().filter((product) -> product.getPriceProduct() >= price).collect(Collectors.toList());
+    }
+
+    @Override
+    public List<Product> getProductsByNameLength() {
+        return productRepository.findAll().stream().filter((product) -> product.getNameProduct().length() > 7).collect(Collectors.toList());
     }
 }
